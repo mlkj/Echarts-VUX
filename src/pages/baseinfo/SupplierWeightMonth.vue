@@ -28,7 +28,7 @@
                     </tbody>
                 </x-table>
             </div>
-            <load-more v-show="detail.length <= 0" :show-loading="false" tip="暂无数据..." background-color="#fbf9fe" style="position:absolute;margin:150px 0 auto 59px;"></load-more>
+            <load-more v-show="detail.length <= 0" :show-loading="false" tip="暂无数据..." background-color="#fbf9fe"></load-more>
             <ve-histogram v-if="!show" :data="chartData" :settings="chartSettings" :events="chartEvents" tooltip-visible legend-visible></ve-histogram>
         </div>
         <supplierinfodetail v-if="showDetial" :supplier-info="SupplierInfo" @listenTochildEvent="showMsgFromchild"></supplierinfodetail>
@@ -48,7 +48,6 @@ import { splitValue } from '../../tools/getDaysInMonth/index'
 export default {
     components: {
         Selector, Supplierinfodetail, Flexbox, FlexboxItem, XSwitch, XTable, TopCalendar, LoadMore
-
     },
     data() {
         return {

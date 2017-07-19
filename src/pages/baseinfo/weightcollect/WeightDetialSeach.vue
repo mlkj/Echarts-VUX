@@ -1,5 +1,5 @@
 <template>
-    <div class="content">
+    <div>
         <span class="right-menu" v-on:click="clickMenu"></span>
         <search v-show="showScrollBox" placeholder="名称或批次号" v-model="serchstr" ref="search" @on-cancel="onCancel"></search>
         <selector direction="rtl" title="供应商:" :options="list" v-model="supplierNM" @on-change="_onChange"></selector>
@@ -22,7 +22,7 @@
                 </tbody>
             </x-table>
         </div>
-        <load-more v-show="seachlist.length === 0" :show-loading="false" tip="暂无数据..." background-color="#fbf9fe" style="position:absolute;top:280px;margin-left:70px;"></load-more>
+        <load-more v-show="seachlist.length === 0" :show-loading="false" tip="暂无数据..." background-color="#fbf9fe"></load-more>
     </div>
 </template>  
 <script>  
@@ -83,7 +83,7 @@ export default {
         },
         _initScroll() {
             if (!this.scroll) {
-                this.scroll = new BScroll(this.$refs.wrapper, {})
+                this.scroll = new BScroll(this.$refs.wrapper, {probeType: 1})
             } else {
                 this.scroll.refresh();
             }
@@ -143,7 +143,7 @@ export default {
     created() {
         this.GetSupplier()
     },
-    mounted() {
+    mounted() {//日期范围
         let now = new Date()
         let year = now.getFullYear()
         let month = now.getMonth()

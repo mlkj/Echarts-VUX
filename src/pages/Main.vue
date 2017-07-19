@@ -1,6 +1,10 @@
 <template>
   <div>
-    <x-header :transition="headerTransition" style="width:100%;position:absolute;left:0;top:0;background-color: RGB(0, 122, 204);z-index:100;" :right-options="rightOptions" :left-options="leftOptions" @on-click-more="onClickMore" :title="title"></x-header>
+    <x-header :transition="headerTransition" style="width:100%;position:absolute;left:0;top:0;background-color: RGB(0, 122, 204);" :right-options="rightOptions" :left-options="leftOptions" @on-click-more="onClickMore" :title="title">
+      <!-- <span v-if="true" slot="overwrite-left" @click="onClickMore">
+        <x-icon type="navicon" size="35" style="fill:#fff;position:relative;top:-8px;left:-3px;"></x-icon>
+      </span> -->
+    </x-header>
     <div>
       <actionsheet :menus="menus" v-model="showMenus" @on-click-menu-menu3="_click" @on-click-menu-menu2="_clickSystem"></actionsheet>
     </div>

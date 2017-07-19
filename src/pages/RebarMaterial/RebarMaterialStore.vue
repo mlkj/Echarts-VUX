@@ -9,24 +9,26 @@
             </flexbox-item>
         </flexbox>
         <div v-show="show">
-            <x-table :cell-bordered="false" style="background-color:#fff;table-layout: fixed;">
-                <thead>
-                    <tr>
-                        <th width="15%">序号</th>
-                        <th>材料名称</th>
-                        <th>开累</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="(list,index) in detail" :key="index">
-                        <td v-text="index+1"></td>
-                        <td v-text="list.InfoName"></td>
-                        <td v-text="list.CurrStoreQuantity"></td>
-                    </tr>
-                </tbody>
-            </x-table>
+            <div class="wrappers" ref="wrapper">
+                <x-table :cell-bordered="false" style="background-color:#fff;table-layout: fixed;">
+                    <thead>
+                        <tr>
+                            <th width="15%">序号</th>
+                            <th>材料名称</th>
+                            <th>开累</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(list,index) in detail" :key="index">
+                            <td v-text="index+1"></td>
+                            <td v-text="list.InfoName"></td>
+                            <td v-text="list.CurrStoreQuantity"></td>
+                        </tr>
+                    </tbody>
+                </x-table>
+            </div>
         </div>
-        <load-more v-show="detail.length <= 0" :show-loading="false" tip="暂无数据..." background-color="#fbf9fe" style="position:absolute;margin:150px 0 auto 59px;"></load-more>
+        <load-more v-show="detail.length <= 0" :show-loading="false" tip="暂无数据..." background-color="#fbf9fe"></load-more>
         <div v-if="!show">
             <x-button mini type="default" plain @click.native="changeType">切换图表类型</x-button>
             <ve-chart :data="chartData" :settings="chartSettings" tooltip-visible legend-visible></ve-chart>
@@ -37,6 +39,7 @@
 <script type="text/ecmascript-6">
 import { mapGetters } from 'vuex'
 import api from '../../fetch/api'
+import BScroll from 'better-scroll'
 import { XSwitch, Flexbox, FlexboxItem, Calendar, XTable, XDialog, XButton, LoadMore } from 'vux'
 
 
@@ -74,6 +77,13 @@ export default {
         })
     },
     methods: {
+        _initScroll() {
+            if (!this.scroll) {
+                this.scroll = new BScroll(this.$refs.wrapper, { probeType: 3 })
+            } else {
+                this.scroll.refresh();
+            }
+        },
         changeType: function () {
             this.index++
             if (this.index >= this.typeArr.length) { this.index = 0 }
@@ -105,6 +115,9 @@ export default {
                     })
                 }
                 this.chartSettings = { type: this.typeArr[this.index] }
+                _this.$nextTick(() => {
+                        _this._initScroll();
+                    })
             }, erro => {
                 console.log('数据加载失败!', erro)
             })
@@ -126,5 +139,14 @@ td {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+.wrappers {
+    position: fixed;  
+    z-index: 1;  
+    top: 90px;  
+    bottom: 50px;  
+    left: 0;  
+    width: 100%;  
+    overflow: hidden; 
 }
 </style>

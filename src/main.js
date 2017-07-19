@@ -17,12 +17,7 @@ Vue.use(VCharts)
 
 Vue.use(Vuex)
 
-import {
-  ConfirmPlugin,
-  LoadingPlugin,
-  AlertPlugin,
-  ToastPlugin
-} from 'vux'
+import { ConfirmPlugin,LoadingPlugin,AlertPlugin,ToastPlugin } from 'vux'
 
 Vue.use(AlertPlugin)
 Vue.use(ConfirmPlugin)

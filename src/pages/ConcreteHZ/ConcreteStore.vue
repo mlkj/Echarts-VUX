@@ -9,22 +9,24 @@
             </flexbox-item>
         </flexbox>
         <div v-show="show">
-            <x-table :cell-bordered="false" style="background-color:#fff;table-layout:fixed;">
-                <thead>
-                    <tr>
-                        <th width="15%">序号</th>                        
-                        <th>材料名称</th>
-                        <th>开累</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="(list,index) in detail" :key="index">
-                        <td v-text="index+1"></td>
-                        <td v-text="list.InfoName"></td>
-                        <td v-text="list.CurrStoreQuantity"></td>
-                    </tr>
-                </tbody>
-            </x-table>
+            <div class="wrappers" ref="wrapper">
+                <x-table :cell-bordered="false" style="background-color:#fff;table-layout:fixed;">
+                    <thead>
+                        <tr>
+                            <th width="15%">序号</th>
+                            <th>材料名称</th>
+                            <th>开累</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(list,index) in detail" :key="index">
+                            <td v-text="index+1"></td>
+                            <td v-text="list.InfoName"></td>
+                            <td v-text="list.CurrStoreQuantity"></td>
+                        </tr>
+                    </tbody>
+                </x-table>
+            </div>
         </div>
         <load-more v-show="detail.length <= 0" :show-loading="false" tip="暂无数据..." background-color="#fbf9fe" style="position:absolute;margin:150px 0 auto 59px;"></load-more>
         <div v-if="!show">
@@ -37,6 +39,7 @@
 <script type="text/ecmascript-6">
 import { mapGetters } from 'vuex'
 import api from '../../fetch/api'
+import BScroll from 'better-scroll'
 import { XSwitch, Flexbox, FlexboxItem, Calendar, XTable, XDialog, XButton, LoadMore } from 'vux'
 
 
@@ -47,7 +50,7 @@ export default {
     data() {
         return {
             switchType: false,
-            typeArr: [ 'pie','histogram', 'line'],
+            typeArr: ['pie', 'histogram', 'line'],
             index: 0,
             weeksList: ['日', '一', '二', '三', '四', '五', '六 '],
             detail: [],
@@ -73,6 +76,13 @@ export default {
         })
     },
     methods: {
+        _initScroll() {
+            if (!this.scroll) {
+                this.scroll = new BScroll(this.$refs.wrapper, { probeType: 3 })
+            } else {
+                this.scroll.refresh();
+            }
+        },
         changeType: function () {
             this.index++
             if (this.index >= this.typeArr.length) { this.index = 0 }
@@ -125,5 +135,15 @@ td {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.wrappers {
+    position: fixed;
+    z-index: 1;
+    top: 90px;
+    bottom: 50px;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
 }
 </style>

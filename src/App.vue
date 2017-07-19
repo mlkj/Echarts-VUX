@@ -20,20 +20,20 @@ import { ViewBox,Loading } from 'vux'
 export default {
   name: 'app',
     components: {
-      ViewBox,Loading
+     ViewBox,Loading
 	},
     computed: {
       ...mapGetters([
           'loading'  
-      ]),
-
-}
+      ])
+},
 }
 </script>
 
 <style lang="less">
 @import '~vux/src/styles/reset.less';
 @import '~vux/src/styles/1px.less';
+
 
 body {
   background-color: #fbf9fe;
