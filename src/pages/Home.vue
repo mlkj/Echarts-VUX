@@ -4,11 +4,7 @@
     <group>
       <cell title="公告">
         <marquee>
-<<<<<<< HEAD
            <marquee-item v-for="item in report" :key="item.id" @click.native="onClick(item)" v-text="item.name"></marquee-item> 
-=======
-          <marquee-item v-for="item in report" :key="item" @click.native="onClick(item)" v-text="item.name"></marquee-item>
->>>>>>> bfcd8fc5cc749a6a74ff6e3d98f103323082c68b
         </marquee>
       </cell>
     </group>

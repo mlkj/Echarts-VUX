@@ -21,10 +21,7 @@ export default {
   GetLoginIn(params) {
     return fetch('/LoginIn.ashx', params)
   },
-<<<<<<< HEAD
   //获取供应商
-=======
->>>>>>> bfcd8fc5cc749a6a74ff6e3d98f103323082c68b
   GetSupplierInfo(params) {
     return fetch('/GetSupplierInfo.ashx', params)
   },
@@ -49,10 +46,7 @@ export default {
   GetWeightInfo(params) {
     return fetch('/GetWeightInfo.ashx', params)
   },
-<<<<<<< HEAD
   //前十详情
-=======
->>>>>>> bfcd8fc5cc749a6a74ff6e3d98f103323082c68b
   GetWeightInfoTopTenDetails(params) {
     return fetch('/GetWeightInfoTopTenDetails.ashx', params)
   },
@@ -77,15 +71,6 @@ export default {
   /**
    * 混凝土实时库存
    */
-<<<<<<< HEAD
-=======
-  RebarMaterialStore(params) {
-    return fetch('/RebarMaterialStore.ashx', params)
-  },
-  /**
-   * 加工中心实时库存
-   */
->>>>>>> bfcd8fc5cc749a6a74ff6e3d98f103323082c68b
   ConcreteMaterialStore(params) {
     return fetch('/ConcreteMaterialStore.ashx', params)
   },
@@ -107,13 +92,10 @@ export default {
   RebarMaterialHZ(params) {
     return fetch('/RebarMaterialHZ.ashx', params)
   },
-<<<<<<< HEAD
   /**
    * 钢筋加工中心实时库存汇总
    */
   RebarMaterialStore(params) {
     return fetch('/RebarMaterialStore.ashx', params)
   },
-=======
->>>>>>> bfcd8fc5cc749a6a74ff6e3d98f103323082c68b
 }

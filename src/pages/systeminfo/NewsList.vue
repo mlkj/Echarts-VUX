@@ -15,10 +15,6 @@
         </div>
       </swipeout-item>
       </swipeout>
-<<<<<<< HEAD
-=======
-      <!--<blog-list></blog-list>-->
->>>>>>> bfcd8fc5cc749a6a74ff6e3d98f103323082c68b
     </div>
     <div v-if="index === 1">
       <x-table :cell-bordered="false" style="background-color:#fff;">

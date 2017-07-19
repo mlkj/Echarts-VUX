@@ -10,7 +10,6 @@
         </flexbox>
         <div v-show="show">
             <x-table :cell-bordered="false" style="background-color:#fff;">
-<<<<<<< HEAD
                 <thead>
                     <tr>
                         <th>班组</th>
@@ -28,25 +27,6 @@
                     </tr>
                 </tbody>
             </x-table>
-=======
-                    <thead>
-                        <tr>
-                            <th>班组</th>
-                            <th>材料名称</th>
-                            <th>规格</th>
-                            <th>开累</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="(list,index) in detail" :key="index">
-                            <td v-text="list.RebarGName"></td>
-                            <td v-text="list.InfoName"></td>
-                            <td v-text="list.InfoModel"></td>
-                            <td v-text="list.Quantity"></td>
-                        </tr>
-                    </tbody>
-                </x-table>
->>>>>>> bfcd8fc5cc749a6a74ff6e3d98f103323082c68b
         </div>
         <load-more v-show="detail.length <= 0" :show-loading="false" tip="暂无数据..." background-color="#fbf9fe" style="position:absolute;margin:150px 0 auto 59px;"></load-more>
         <div v-if="!show">
@@ -126,11 +106,7 @@ export default {
                         RebarGName: data[i].RebarGName,
                         InfoName: data[i].InfoName,
                         InfoModel: data[i].InfoModel,
-<<<<<<< HEAD
                         Quantity: data[i].Quantity + data[i].InfoUnit
-=======
-                        Quantity: data[i].Quantity
->>>>>>> bfcd8fc5cc749a6a74ff6e3d98f103323082c68b
                     })
                 }
                 this.chartSettings = { type: this.typeArr[this.index] }

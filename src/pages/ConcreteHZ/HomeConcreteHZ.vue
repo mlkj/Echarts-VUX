@@ -11,12 +11,6 @@
       <grid-item link="/concreteMaterialDay" label="日收料统计">
         <img slot="icon" src="../../assets/daycount.png" alt="">
       </grid-item>
-<<<<<<< HEAD
-=======
-      <grid-item link="/concreteMaterialStore" label="实时库存">
-        <img slot="icon" src="../../assets/detail.png" alt="">
-      </grid-item>
->>>>>>> bfcd8fc5cc749a6a74ff6e3d98f103323082c68b
     </grid>
     <group-title>混凝土统计管理</group-title>
     <grid :rows="3">

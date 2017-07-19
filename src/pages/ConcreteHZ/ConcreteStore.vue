@@ -9,32 +9,18 @@
             </flexbox-item>
         </flexbox>
         <div v-show="show">
-<<<<<<< HEAD
             <x-table :cell-bordered="false" style="background-color:#fff;table-layout:fixed;">
                 <thead>
                     <tr>
                         <th width="15%">序号</th>                        
                         <th>材料名称</th>
                         <th>开累</th>
-=======
-            <x-table :cell-bordered="false" style="background-color:#fff;table-layout:fixed;overflow:hidden;">
-                <thead>
-                    <tr>
-                        <th width="30%">材料名称</th>
-                        <th width="35%">规格</th>
-                        <th width="35%">开累</th>
->>>>>>> bfcd8fc5cc749a6a74ff6e3d98f103323082c68b
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="(list,index) in detail" :key="index">
-<<<<<<< HEAD
                         <td v-text="index+1"></td>
                         <td v-text="list.InfoName"></td>
-=======
-                        <td v-text="list.InfoName"></td>
-                        <td v-text="list.InfoModel"></td>
->>>>>>> bfcd8fc5cc749a6a74ff6e3d98f103323082c68b
                         <td v-text="list.CurrStoreQuantity"></td>
                     </tr>
                 </tbody>
@@ -104,11 +90,7 @@ export default {
             _this.detail = []
             _this.chartData.rows = []
             let params = { 'ProjectID': _this.getUserData.DeptNodebh, 'BeginDate': _this.startTime }
-<<<<<<< HEAD
             api.ConcreteMaterialStore(params).then(response => {
-=======
-            api.RebarMaterialStore(params).then(response => {
->>>>>>> bfcd8fc5cc749a6a74ff6e3d98f103323082c68b
                 let data = response.data.table
                 for (var i = 0; i < data.length; i++) {
                     var obj = {
@@ -118,12 +100,7 @@ export default {
                     _this.chartData.rows.push(obj)
                     _this.detail.push({
                         InfoName: data[i].InfoName,
-<<<<<<< HEAD
                         CurrStoreQuantity: data[i].CurrStoreQuantity
-=======
-                        InfoModel: data[i].InfoModel,
-                        CurrStoreQuantity: data[i].CurrStoreQuantity + data[i].InfoUnit
->>>>>>> bfcd8fc5cc749a6a74ff6e3d98f103323082c68b
                     })
                 }
                 this.chartSettings = { type: this.typeArr[this.index] }
@@ -144,13 +121,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style  scoped>
-<<<<<<< HEAD
 td {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
-=======
-
->>>>>>> bfcd8fc5cc749a6a74ff6e3d98f103323082c68b
 </style>

@@ -141,11 +141,7 @@ export default {
         },
         GetSupplier() {
             let that = this
-<<<<<<< HEAD
             let params = { 'ProjectID': that.getUserData.DeptNodebh, 'SupplierName': '' }
-=======
-            let params = { 'ProjectID': _this.getUserData.DeptNodebh, 'SupplierName': '' }
->>>>>>> bfcd8fc5cc749a6a74ff6e3d98f103323082c68b
             api.GetSupplierInfo(params).then(response => {
                 let data = response.data.ds
                 that.supplierNM = data[0].SupplierNM

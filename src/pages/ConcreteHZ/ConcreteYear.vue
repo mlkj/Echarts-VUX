@@ -30,11 +30,7 @@
             <load-more v-show="detail.length <= 0" :show-loading="false" tip="暂无数据..." background-color="#fbf9fe" style="position:absolute;margin:150px 0 auto 59px;"></load-more>
             <div v-if="show">
                 <x-button mini type="default" plain @click.native="changeType">切换图表类型</x-button>
-<<<<<<< HEAD
                 <ve-chart :data="chartData" :settings="chartSettings" tooltip-visible legend-visible></ve-chart>
-=======
-                <ve-chart :data="chartData" :settings="chartSettings" :events="chartEvents" tooltip-visible legend-visible></ve-chart>
->>>>>>> bfcd8fc5cc749a6a74ff6e3d98f103323082c68b
             </div>
         </div>
     </div>
@@ -111,11 +107,7 @@ export default {
                 console.log('数据加载失败!', erro)
             })
         },
-<<<<<<< HEAD
         change(val) { //查询日期
-=======
-        change(val) { //改变查询日期
->>>>>>> bfcd8fc5cc749a6a74ff6e3d98f103323082c68b
             let _this = this
             _this.startTime = val
             let split = val.split('-')
@@ -125,17 +117,6 @@ export default {
             _this.endtime = years + '-' + '12'
             _this._initEchart()
         }
-<<<<<<< HEAD
-=======
-    },
-    created() {
-        let _this = this
-        this.chartEvents = {
-            click: function (e) {
-                console.log(e.name)
-            }
-        }
->>>>>>> bfcd8fc5cc749a6a74ff6e3d98f103323082c68b
     }
 }
 </script>

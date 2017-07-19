@@ -30,7 +30,6 @@ const RebarGeHZYear = resolve => require([ '../pages/RebarMaterial/RebarGeHZ/Reb
 const RebarGeHZMonth = resolve => require([ '../pages/RebarMaterial/RebarGeHZ/RebarGeHZMonth.vue'], resolve);
 const RebarGeHZDay = resolve => require([ '../pages/RebarMaterial/RebarGeHZ/RebarGeHZDay.vue'], resolve);
 
-<<<<<<< HEAD
 const RebarGeOutHZYear = resolve => require([ '../pages/RebarMaterial/RebarGeOutHZ/RebarGeOutHZYear.vue'], resolve);
 const RebarGeOutHZMonth = resolve => require([ '../pages/RebarMaterial/RebarGeOutHZ/RebarGeOutHZMonth.vue'], resolve);
 const RebarGeOutHZDay = resolve => require([ '../pages/RebarMaterial/RebarGeOutHZ/RebarGeOutHZDay.vue'], resolve);
@@ -39,8 +38,6 @@ const RebarMaterialHZYear = resolve => require([ '../pages/RebarMaterial/RebarMa
 const RebarMaterialHZMonth = resolve => require([ '../pages/RebarMaterial/RebarMaterialHZ/RebarMaterialHZMonth.vue'], resolve);
 const RebarMaterialHZDay = resolve => require([ '../pages/RebarMaterial/RebarMaterialHZ/RebarMaterialHZDay.vue'], resolve);
 
-=======
->>>>>>> bfcd8fc5cc749a6a74ff6e3d98f103323082c68b
 
 
 const routes=[
@@ -77,7 +74,6 @@ const routes=[
       {path: 'rebarGeHZYear', component: RebarGeHZYear , name: '成品收料年度汇总', meta: {requireMenue: false}}, 
       {path: 'rebarGeHZMonth', component: RebarGeHZMonth , name: '成品收料月度汇总', meta: {requireMenue: false}}, 
       {path: 'rebarGeHZDay', component: RebarGeHZDay , name: '成品收料日汇总', meta: {requireMenue: false}}, 
-<<<<<<< HEAD
 
       {path: 'rebarGeOutHZDay', component: RebarGeOutHZDay , name: '成品发料日汇总', meta: {requireMenue: false}}, 
       {path: 'rebarGeOutHZMonth', component: RebarGeOutHZMonth , name: '成品发料月汇总', meta: {requireMenue: false}}, 
@@ -86,8 +82,6 @@ const routes=[
       {path: 'rebarMaterialHZYear', component: RebarMaterialHZYear , name: '原材料年汇总', meta: {requireMenue: false}}, 
       {path: 'rebarMaterialHZMonth', component: RebarMaterialHZMonth , name: '原材料月汇总', meta: {requireMenue: false}}, 
       {path: 'rebarMaterialHZDay', component: RebarMaterialHZDay , name: '原材料日汇总', meta: {requireMenue: false}}, 
-=======
->>>>>>> bfcd8fc5cc749a6a74ff6e3d98f103323082c68b
       
       
       

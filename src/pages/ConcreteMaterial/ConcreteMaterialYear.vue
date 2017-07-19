@@ -29,11 +29,7 @@
         <load-more v-show="detail.length <= 0" :show-loading="false" tip="暂无数据..." background-color="#fbf9fe" style="position:absolute;margin:150px 0 auto 59px;"></load-more>
         <div v-if="show">
             <x-button mini type="default" plain @click.native="changeType">切换图表类型</x-button>
-<<<<<<< HEAD
             <ve-chart :data="chartData" :settings="chartSettings" tooltip-visible legend-visible></ve-chart>
-=======
-            <ve-chart :data="chartData" :settings="chartSettings" :events="chartEvents" tooltip-visible legend-visible></ve-chart>
->>>>>>> bfcd8fc5cc749a6a74ff6e3d98f103323082c68b
         </div>
     </div>
 </template>
@@ -81,14 +77,6 @@ export default {
         })
     },
     methods: {
-<<<<<<< HEAD
-=======
-        resetScroller() {
-            this.$nextTick(() => {
-                this.$refs.scroller.reset()
-            })
-        },
->>>>>>> bfcd8fc5cc749a6a74ff6e3d98f103323082c68b
         changeType: function () {
             this.index++
             if (this.index >= this.typeArr.length) { this.index = 0 }
@@ -127,17 +115,6 @@ export default {
             _this.endtime = years + '-' + '12'
             _this._initEchart()
         }
-<<<<<<< HEAD
-=======
-    },
-    created() {
-        let _this = this
-        this.chartEvents = {
-            click: function (e) {
-                console.log(e.name)
-            }
-        }
->>>>>>> bfcd8fc5cc749a6a74ff6e3d98f103323082c68b
     }
 }
 </script>

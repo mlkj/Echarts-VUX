@@ -1,15 +1,8 @@
 {
-<<<<<<< HEAD
   "name": "物资管理",
   "version": "1.0.0",
   "description": "ylwebapp",
   "author": "guoning",
-=======
-  "name": "ylwebapp",
-  "version": "1.0.0",
-  "description": "ylwebapp",
-  "author": "danielmlc",
->>>>>>> bfcd8fc5cc749a6a74ff6e3d98f103323082c68b
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
@@ -22,15 +15,9 @@
     "v-charts": "^1.2.9",
     "vue": "^2.2.2",
     "vue-infinite-loading": "^2.1.3",
-<<<<<<< HEAD
     "vue-router": "^2.2.0",
     "vuex": "^2.3.1",
     "vux": "^2.2.0"
-=======
-    "vue-router": "^2.5.3",
-    "vuex": "^2.3.1",
-    "vux": "^2.4.1"
->>>>>>> bfcd8fc5cc749a6a74ff6e3d98f103323082c68b
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",

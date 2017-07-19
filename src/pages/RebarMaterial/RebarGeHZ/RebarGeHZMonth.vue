@@ -2,11 +2,7 @@
     <div>
         <div>
             <flexbox>
-<<<<<<< HEAD
                 <flexbox-item :span="5">
-=======
-                <flexbox-item :span="4">
->>>>>>> bfcd8fc5cc749a6a74ff6e3d98f103323082c68b
                     <x-switch title="报表:" v-model="switchType" @on-change="_onConfirm"></x-switch>
                 </flexbox-item>
                 <flexbox-item>
@@ -104,11 +100,7 @@ export default {
                         RebarGName: data[i].RebarGName,
                         InfoName: data[i].InfoName,
                         InfoModel: data[i].InfoModel,
-<<<<<<< HEAD
                         Quantity: data[i].Quantity + data[i].InfoUnit
-=======
-                        Quantity: data[i].Quantity
->>>>>>> bfcd8fc5cc749a6a74ff6e3d98f103323082c68b
                     })
                 }
             }, erro => {
