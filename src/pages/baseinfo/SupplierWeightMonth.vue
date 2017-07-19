@@ -126,7 +126,7 @@ export default {
             })
 
         },
-        _onChange(val) { //key值，改变供应商
+        _onChange(val) { //key值
             this.supplierNM = val
             this._initEchart()
         },
