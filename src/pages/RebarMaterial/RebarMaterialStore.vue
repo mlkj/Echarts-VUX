@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div>
         <flexbox>
             <flexbox-item :span="5">
@@ -16,6 +16,7 @@
                         <th width="15%">序号</th>
                         <th>材料名称</th>
                         <th>开累</th>
+
 =======
             <x-table :cell-bordered="false" style="background-color:#fff;">
                 <thead>
