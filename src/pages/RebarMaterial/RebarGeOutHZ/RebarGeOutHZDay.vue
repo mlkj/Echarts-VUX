@@ -10,25 +10,25 @@
         </flexbox>
         <div v-show="show">
             <x-table :cell-bordered="false" style="background-color:#fff;">
-                    <thead>
-                        <tr>
-                            <th>班组</th>
-                            <th>材料名称</th>
-                            <th>规格</th>
-                            <th>开累</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="(list,index) in detail" :key="index">
-                            <td v-text="list.RebarGName"></td>
-                            <td v-text="list.InfoName"></td>
-                            <td v-text="list.InfoModel"></td>
-                            <td v-text="list.Quantity"></td>
-                        </tr>
-                    </tbody>
-                </x-table>
+                <thead>
+                    <tr>
+                        <th>班组</th>
+                        <th>材料名称</th>
+                        <th>规格型号</th>
+                        <th>开累数量</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(list,index) in detail" :key="index">
+                        <td v-text="list.RebarGName"></td>
+                        <td v-text="list.InfoName"></td>
+                        <td v-text="list.InfoModel"></td>
+                        <td v-text="list.Quantity"></td>
+                    </tr>
+                </tbody>
+            </x-table>
+            <load-more v-show="detail.length <= 0" :show-loading="false" tip="暂无数据..." background-color="#fbf9fe"></load-more>
         </div>
-        <load-more v-show="detail.length <= 0" :show-loading="false" tip="暂无数据..." background-color="#fbf9fe"></load-more>
         <div v-if="!show">
             <x-button mini type="default" plain @click.native="changeType">切换图表类型</x-button>
             <ve-chart :data="chartData" :settings="chartSettings" tooltip-visible legend-visible></ve-chart>
@@ -49,7 +49,7 @@ export default {
     data() {
         return {
             switchType: false,
-            typeArr: ['histogram', 'line', 'pie'],
+            typeArr: ['pie','histogram', 'line' ],
             index: 0,
             weeksList: ['日', '一', '二', '三', '四', '五', '六 '],
             detail: [],
@@ -99,7 +99,7 @@ export default {
                 for (var i = 0; i < data.length; i++) {
                     var obj = {
                         '类型': data[i].InfoName,
-                        '重量': data[i].Quantity
+                        '净重': data[i].Quantity
                     }
                     _this.chartData.rows.push(obj)
                     _this.detail.push({

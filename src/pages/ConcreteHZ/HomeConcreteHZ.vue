@@ -3,25 +3,25 @@
     <group-title>原材料统计管理</group-title>
     <grid :rows="3">
       <grid-item link="/concreteMaterial" label="开累统计">
-        <img slot="icon" src="../../assets/totalcount.png" alt="">
+        <img slot="icon" src="../../assets/report.png" alt="">
       </grid-item>
       <grid-item link="/concreteMaterialMonth" label="月收料统计">
-        <img slot="icon" src="../../assets/monthcount.png" alt="">
+        <img slot="icon" src="../../assets/Monthpie.png" alt="">
       </grid-item>
       <grid-item link="/concreteMaterialDay" label="日收料统计">
-        <img slot="icon" src="../../assets/daycount.png" alt="">
+        <img slot="icon" src="../../assets/chartbar.png" alt="">
       </grid-item>
     </grid>
     <group-title>混凝土统计管理</group-title>
     <grid :rows="3">
       <grid-item link="/concreteYear" label="开累统计">
-        <img slot="icon" src="../../assets/totalcount.png" alt="">
+        <img slot="icon" src="../../assets/report.png" alt="">
       </grid-item>
       <grid-item link="/concreteMonth" label="月收料统计">
-        <img slot="icon" src="../../assets/monthcount.png" alt="">
+        <img slot="icon" src="../../assets/Monthpie.png" alt="">
       </grid-item>
       <grid-item link="/concreteDay" label="日收料统计">
-        <img slot="icon" src="../../assets/daycount.png" alt="">
+        <img slot="icon" src="../../assets/chartbar.png" alt="">
       </grid-item>
       <grid-item link="/concreteStore" label="实时库存">
         <img slot="icon" src="../../assets/detail.png" alt="">

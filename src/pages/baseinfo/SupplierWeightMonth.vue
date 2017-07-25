@@ -27,9 +27,12 @@
                         </tr>
                     </tbody>
                 </x-table>
+                <load-more v-show="detail.length <= 0" :show-loading="false" tip="暂无数据..." background-color="#fbf9fe"></load-more>
             </div>
-            <load-more v-show="detail.length <= 0" :show-loading="false" tip="暂无数据..." background-color="#fbf9fe"></load-more>
-            <ve-histogram v-if="!show" :data="chartData" :settings="chartSettings" :events="chartEvents" tooltip-visible legend-visible></ve-histogram>
+            <div v-if="!show">
+                <x-button mini type="default" plain @click.native="changeType">切换图表类型</x-button>
+                <ve-chart :data="chartData" :settings="chartSettings" :events="chartEvents" tooltip-visible legend-visible></ve-chart>
+            </div>
         </div>
         <supplierinfodetail v-if="showDetial" :supplier-info="SupplierInfo" @listenTochildEvent="showMsgFromchild"></supplierinfodetail>
     </div>
@@ -37,7 +40,7 @@
 
 <script type="text/ecmascript-6">
 import api from '../../fetch/api'
-import { Selector, Flexbox, FlexboxItem, XSwitch, XTable, LoadMore } from 'vux'
+import { XButton, Selector, Flexbox, FlexboxItem, XSwitch, XTable, LoadMore } from 'vux'
 import Supplierinfodetail from './Supplierinfodetail'
 import TopCalendar from '../../components/top-calendar/monthCalendar.vue'
 import { mapGetters } from 'vuex'
@@ -47,10 +50,12 @@ import { splitValue } from '../../tools/getDaysInMonth/index'
 
 export default {
     components: {
-        Selector, Supplierinfodetail, Flexbox, FlexboxItem, XSwitch, XTable, TopCalendar, LoadMore
+        XButton, Selector, Supplierinfodetail, Flexbox, FlexboxItem, XSwitch, XTable, TopCalendar, LoadMore
     },
     data() {
         return {
+            typeArr: ['pie', 'histogram', 'line'],
+            index: 0,
             SupplierInfo: [],
             showDetial: false,
             switchType: false,
@@ -71,6 +76,7 @@ export default {
                 metrics: ['净重'],
                 yAxisType: ['KMB'],
                 yAxisName: ['净重'],
+                area: true,
             }
         }
 
@@ -81,6 +87,11 @@ export default {
         }),
     },
     methods: {
+        changeType: function () {
+            this.index++
+            if (this.index >= this.typeArr.length) { this.index = 0 }
+            this.chartSettings = { type: this.typeArr[this.index], area: true }
+        },
         showMsgFromchild(val) {
             this.showDetial = val
         },
@@ -120,6 +131,7 @@ export default {
                         InfoUnit: data[i].InfoUnit
                     })
                 }
+                this.chartSettings = { type: this.typeArr[this.index] }
             }, erro => {
                 console.log('数据加载失败!', erro)
             })

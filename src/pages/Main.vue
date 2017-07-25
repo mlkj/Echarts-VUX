@@ -1,13 +1,5 @@
 <template>
   <div>
-    <x-header :transition="headerTransition" style="width:100%;position:absolute;left:0;top:0;background-color: RGB(0, 122, 204);" :right-options="rightOptions" :left-options="leftOptions" @on-click-more="onClickMore" :title="title">
-      <!-- <span v-if="true" slot="overwrite-left" @click="onClickMore">
-        <x-icon type="navicon" size="35" style="fill:#fff;position:relative;top:-8px;left:-3px;"></x-icon>
-      </span> -->
-    </x-header>
-    <div>
-      <actionsheet :menus="menus" v-model="showMenus" @on-click-menu-menu3="_click" @on-click-menu-menu2="_clickSystem"></actionsheet>
-    </div>
     <transition name="fade">
       <router-view></router-view>
     </transition>
@@ -38,32 +30,21 @@
 </template>
 
 <script>
-import { Selector, XDialog, Group, XHeader, Actionsheet, Tabbar, TabbarItem, Grid, GridItem } from 'vux'
-import { mapGetters, mapActions } from 'vuex'
+import { Selector, XDialog, Group, Tabbar, TabbarItem } from 'vux'
+import { mapGetters } from 'vuex'
 
 
 export default {
   components: {
-    XHeader, Group, Grid, GridItem, XDialog, Selector,
-    Actionsheet,
+    Group, XDialog, Selector,
     Tabbar,
     TabbarItem
   },
   data() {
     return {
-      menuList: {},
       value3: '',
       lists: [],
       showScrollBox: false,
-      objectListValue: [],
-      objectList: [],
-      show1: false,
-      show: true,
-      menus: {
-        menu2: '系统设置',
-        menu3: '注销登录'
-      },
-      showMenus: false
     }
   },
   methods: {
@@ -78,31 +59,6 @@ export default {
         }
       }
     },
-    _clickSystem() {
-      this.$router.push('/systemConfig')
-    },
-    onClickMore() {
-      this.showMenus = true
-    },
-    _click() {
-      let that = this
-      that.$vux.confirm.show({
-        title: '提示',
-        content: '您确认退出程序吗?',
-        onConfirm() {
-          that.$store.dispatch('setSignOut')
-          setTimeout(() => {
-            that.$router.replace('/login')
-          }, 200)
-          that.$vux.toast.show({
-            text: '退出登录成功',
-            type: 'text',
-            position: 'top',
-            width: "15em"
-          })
-        }
-      })
-    }
   },
   mounted() {
     var data = this.userInfo
@@ -114,28 +70,7 @@ export default {
   computed: {
     ...mapGetters([
       'userInfo', 'getUserData'
-    ]),
-    headerTransition() {
-      return this.direction === 'forward' ? 'vux-header-fade-in-right' : 'vux-header-fade-in-left'
-    },
-    title() {
-      if (this.$route.meta.requireMenue) {
-        this.show = true;
-      } else {
-        this.show = false;
-      }
-      return this.$route.name
-    },
-    leftOptions() {
-      return {
-        showBack: !this.$route.meta.requireMenue
-      }
-    },
-    rightOptions() {
-      return {
-        showMore: this.show
-      }
-    }
+    ])
   }
 }
 </script>

@@ -14,19 +14,19 @@
                     <tr>
                         <th>序号</th>
                         <th>材料名称</th>
-                        <th>开累</th>
+                        <th>开累数量</th>
                     </tr>
                 </thead>
-                     <tbody> 
-                        <tr v-for="(list,index) in detail" :key="index">
-                            <td v-text="index+1"></td>
-                            <td v-text="list.InfoName"></td>
-                            <td v-text="list.FactAmnt"></td>
-                        </tr>
-                     </tbody> 
+                <tbody>
+                    <tr v-for="(list,index) in detail" :key="index">
+                        <td v-text="index+1"></td>
+                        <td v-text="list.InfoName"></td>
+                        <td v-text="list.FactAmnt"></td>
+                    </tr>
+                </tbody>
             </x-table>
+            <load-more v-show="detail.length <= 0" :show-loading="false" tip="暂无数据..." background-color="#fbf9fe"></load-more>
         </div>
-        <load-more v-show="detail.length <= 0" :show-loading="false" tip="暂无数据..." background-color="#fbf9fe" style="position:absolute;margin:150px 0 auto 59px;"></load-more>
         <div v-if="show">
             <x-button mini type="default" plain @click.native="changeType">切换图表类型</x-button>
             <ve-chart :data="chartData" :settings="chartSettings" tooltip-visible legend-visible></ve-chart>
@@ -44,11 +44,11 @@ import { mapGetters } from 'vuex'
 
 export default {
     components: {
-         XButton, Flexbox, FlexboxItem, XTable, XSwitch, TopCalendar, LoadMore
+        XButton, Flexbox, FlexboxItem, XTable, XSwitch, TopCalendar, LoadMore
     },
     data() {
         return {
-            typeArr: ['pie','histogram', 'line'],
+            typeArr: ['pie', 'histogram', 'line'],
             index: 0,
             showScrollBox: false,
             detail: [],

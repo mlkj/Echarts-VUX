@@ -38,7 +38,6 @@ const router = new VueRouter({
 
 FastClick.attach(document.body)
 
-
 router.beforeEach((to, from, next) => {　 // to: 即将要进入的路由对象
   　 // from: 当前正要离开的路由对象
   　 // next: 进行下一状态，切记，一定要在结束业务逻辑后调用 next 函数，不然钩子函数就不会被 resolved
@@ -52,10 +51,6 @@ router.beforeEach((to, from, next) => {　 // to: 即将要进入的路由对象
   }
 })
 
-router.afterEach(function (to) {
-  // store.dispatch('setLoadingState', false)
-})
-
 Vue.config.productionTip = false
 
 //4. 创建和挂载根实例。
@@ -63,5 +58,5 @@ Vue.config.productionTip = false
 new Vue({
   router,
   store,
-  render: h => h(App)
+  render: h => h(App) //Render函数使用虚拟dom来渲染节点提升性能，因为它是基于JavaScript计算,使用createElement(h)来创建dom节点
 }).$mount('#app-box')

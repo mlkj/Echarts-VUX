@@ -472,7 +472,7 @@ ul {
         .message {
             font-family: Roboto, sans-serif;
             font-weight: 300;
-            font-size: 18px;
+            font-size: 20px;
             position: relative;
             height: 30px;
             &.selected {

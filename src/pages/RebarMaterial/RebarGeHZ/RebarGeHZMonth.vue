@@ -15,8 +15,8 @@
                         <tr>
                             <th>班组</th>
                             <th>材料名称</th>
-                            <th>规格</th>
-                            <th>开累</th>
+                            <th>规格型号</th>
+                            <th>开累数量</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -28,16 +28,19 @@
                         </tr>
                     </tbody>
                 </x-table>
+                <load-more v-show="detail.length <= 0" :show-loading="false" tip="暂无数据..." background-color="#fbf9fe"></load-more>
             </div>
-            <load-more v-show="detail.length <= 0" :show-loading="false" tip="暂无数据..." background-color="#fbf9fe"></load-more>
-            <ve-histogram v-if="!show" :data="chartData" :settings="chartSettings" tooltip-visible legend-visible></ve-histogram>
+            <div v-if="!show">
+                <x-button mini type="default" plain @click.native="changeType">切换图表类型</x-button>
+                <ve-chart :data="chartData" :settings="chartSettings" tooltip-visible legend-visible></ve-chart>
+            </div>
         </div>
     </div>
 </template>
 
 <script type="text/ecmascript-6">
 import api from '../../../fetch/api'
-import { Flexbox, FlexboxItem, XSwitch, XTable, LoadMore } from 'vux'
+import { XButton, Flexbox, FlexboxItem, XSwitch, XTable, LoadMore } from 'vux'
 import TopCalendar from '../../../components/top-calendar/monthCalendar.vue'
 import { mapGetters } from 'vuex'
 import { splitValue } from '../../../tools/getDaysInMonth/index'
@@ -47,10 +50,12 @@ import { splitValue } from '../../../tools/getDaysInMonth/index'
 
 export default {
     components: {
-        Flexbox, FlexboxItem, XSwitch, XTable, TopCalendar, LoadMore
+        XButton, Flexbox, FlexboxItem, XSwitch, XTable, TopCalendar, LoadMore
     },
     data() {
         return {
+            typeArr: ['pie', 'histogram', 'line'],
+            index: 0,
             switchType: false,
             detail: [],
             begtime: '',
@@ -66,6 +71,7 @@ export default {
                 metrics: ['净重'],
                 yAxisType: ['KMB'],
                 yAxisName: ['净重'],
+                area: true,
             }
         }
 
@@ -76,6 +82,11 @@ export default {
         }),
     },
     methods: {
+        changeType: function () {
+            this.index++
+            if (this.index >= this.typeArr.length) { this.index = 0 }
+            this.chartSettings = { type: this.typeArr[this.index], area: true }
+        },
         _onConfirm() {
             if (this.switchType) {
                 this.show = false
@@ -93,7 +104,7 @@ export default {
                 for (var i = 0; i < data.length; i++) {
                     var obj = {
                         '类型': data[i].InfoName,
-                        '重量': data[i].Quantity
+                        '净重': data[i].Quantity
                     }
                     _this.chartData.rows.push(obj)
                     _this.detail.push({
@@ -103,6 +114,7 @@ export default {
                         Quantity: data[i].Quantity + data[i].InfoUnit
                     })
                 }
+                this.chartSettings = { type: this.typeArr[this.index] }
             }, erro => {
                 console.log('数据加载失败!', erro)
             })

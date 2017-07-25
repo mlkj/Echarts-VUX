@@ -1,7 +1,7 @@
 <template>
     <div>
         <span class="right-menu" v-on:click="clickMenu"></span>
-        <search v-show="showScrollBox" placeholder="名称或批次号" v-model="serchstr" ref="search" @on-cancel="onCancel"></search>
+        <search v-show="showScrollBox" placeholder="材料名称或批次号" v-model="serchstr" ref="search" @on-cancel="onCancel"></search>
         <selector direction="rtl" title="供应商:" :options="list" v-model="supplierNM" @on-change="_onChange"></selector>
         <datepicker v-model="datetime" :range="range" @input="_changeDate" title="日期:"></datepicker>
         <div class="wrapper" ref="wrapper">
@@ -10,19 +10,19 @@
                     <tr>
                         <th>批次号</th>
                         <th>材料名称</th>
-                        <th>开累</th>
+                        <th>开累数量</th>
                     </tr>
                 </thead>
                 <tbody v-if="seachlist.length > 0">
                     <tr v-for="(list,index) in seachlist" :key="index">
-                        <td v-text="list.BatchNo"></td> 
+                        <td v-text="list.BatchNo"></td>
                         <td v-text="list.InfoName"></td>
                         <td v-text="list.NetWeight"></td>
                     </tr>
                 </tbody>
             </x-table>
+            <load-more v-show="seachlist.length === 0" :show-loading="false" tip="暂无数据..." background-color="#fbf9fe"></load-more>
         </div>
-        <load-more v-show="seachlist.length === 0" :show-loading="false" tip="暂无数据..." background-color="#fbf9fe"></load-more>
     </div>
 </template>  
 <script>  
@@ -82,11 +82,7 @@ export default {
             this.fetchData()
         },
         _initScroll() {
-            if (!this.scroll) {
-                this.scroll = new BScroll(this.$refs.wrapper, {probeType: 1})
-            } else {
-                this.scroll.refresh();
-            }
+                this.scroll = new BScroll(this.$refs.wrapper, {})
         },
         clickMenu() {
             this.showScrollBox = !this.showScrollBox
@@ -130,6 +126,7 @@ export default {
                             InfoModel: data[i].InfoModel
                         })
                     }
+                    //dom结构加载结束
                     that.$nextTick(() => {
                         that._initScroll();
                     })

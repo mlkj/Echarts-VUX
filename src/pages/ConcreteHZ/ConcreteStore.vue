@@ -8,14 +8,13 @@
                 <calendar :weeks-list="weeksList" @on-change="change" v-model="startTime" title="日期:" disable-future></calendar>
             </flexbox-item>
         </flexbox>
-        <div v-show="show">
-            <div class="wrappers" ref="wrapper">
+            <div class="wrappers" ref="wrapper" v-show="show">
                 <x-table :cell-bordered="false" style="background-color:#fff;table-layout:fixed;">
                     <thead>
                         <tr>
                             <th width="15%">序号</th>
                             <th>材料名称</th>
-                            <th>开累</th>
+                            <th>开累数量</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -26,9 +25,8 @@
                         </tr>
                     </tbody>
                 </x-table>
+                <load-more v-show="detail.length <= 0" :show-loading="false" tip="暂无数据..." background-color="#fbf9fe"></load-more>
             </div>
-        </div>
-        <load-more v-show="detail.length <= 0" :show-loading="false" tip="暂无数据..." background-color="#fbf9fe" style="position:absolute;margin:150px 0 auto 59px;"></load-more>
         <div v-if="!show">
             <x-button mini type="default" plain @click.native="changeType">切换图表类型</x-button>
             <ve-chart :data="chartData" :settings="chartSettings" tooltip-visible legend-visible></ve-chart>
@@ -78,7 +76,7 @@ export default {
     methods: {
         _initScroll() {
             if (!this.scroll) {
-                this.scroll = new BScroll(this.$refs.wrapper, { probeType: 3 })
+                this.scroll = new BScroll(this.$refs.wrapper, {})
             } else {
                 this.scroll.refresh();
             }

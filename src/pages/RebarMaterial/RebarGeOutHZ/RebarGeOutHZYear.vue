@@ -14,8 +14,8 @@
                     <tr>
                         <th>班组</th>
                         <th>材料名称</th>
-                        <th>规格</th>
-                        <th>开累</th>
+                        <th>规格型号</th>
+                        <th>开累数量</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,8 +27,8 @@
                     </tr>
                 </tbody>
             </x-table>
+            <load-more v-show="detail.length <= 0" :show-loading="false" tip="暂无数据..." background-color="#fbf9fe"></load-more>
         </div>
-        <load-more v-show="detail.length <= 0" :show-loading="false" tip="暂无数据..." background-color="#fbf9fe"></load-more>
         <div v-if="show">
             <x-button mini type="default" plain @click.native="changeType">切换图表类型</x-button>
             <ve-chart :data="chartData" :settings="chartSettings" tooltip-visible legend-visible></ve-chart>

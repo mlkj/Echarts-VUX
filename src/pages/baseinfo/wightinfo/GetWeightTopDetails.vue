@@ -1,7 +1,7 @@
 <template>
     <div class="supplierdetail">
         <div>
-            <span class="center-menu">统计明细</span>
+            <span class="center-menu">地磅称重明细</span>
             <x-button class="left-menu" type="primary" @click.native="toBack" text="<返回" mini></x-button>
         </div>
         <x-table :cell-bordered="false" style="background-color:#fff;">

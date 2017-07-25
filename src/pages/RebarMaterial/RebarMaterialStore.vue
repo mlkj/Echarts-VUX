@@ -8,27 +8,25 @@
                 <calendar :weeks-list="weeksList" @on-change="change" v-model="startTime" title="日期:" disable-future></calendar>
             </flexbox-item>
         </flexbox>
-        <div v-show="show">
-            <div class="wrappers" ref="wrapper">
-                <x-table :cell-bordered="false" style="background-color:#fff;table-layout: fixed;">
-                    <thead>
-                        <tr>
-                            <th width="15%">序号</th>
-                            <th>材料名称</th>
-                            <th>开累</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="(list,index) in detail" :key="index">
-                            <td v-text="index+1"></td>
-                            <td v-text="list.InfoName"></td>
-                            <td v-text="list.CurrStoreQuantity"></td>
-                        </tr>
-                    </tbody>
-                </x-table>
-            </div>
+        <div class="wrappers" ref="wrapper" v-show="show">
+            <x-table :cell-bordered="false" style="background-color:#fff;table-layout: fixed;">
+                <thead>
+                    <tr>
+                        <th width="15%">序号</th>
+                        <th>材料名称</th>
+                        <th>开累数量</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(list,index) in detail" :key="index">
+                        <td v-text="index+1"></td>
+                        <td v-text="list.InfoName"></td>
+                        <td v-text="list.CurrStoreQuantity"></td>
+                    </tr>
+                </tbody>
+            </x-table>
+            <load-more v-show="detail.length <= 0" :show-loading="false" tip="暂无数据..." background-color="#fbf9fe"></load-more>
         </div>
-        <load-more v-show="detail.length <= 0" :show-loading="false" tip="暂无数据..." background-color="#fbf9fe"></load-more>
         <div v-if="!show">
             <x-button mini type="default" plain @click.native="changeType">切换图表类型</x-button>
             <ve-chart :data="chartData" :settings="chartSettings" tooltip-visible legend-visible></ve-chart>
@@ -79,7 +77,7 @@ export default {
     methods: {
         _initScroll() {
             if (!this.scroll) {
-                this.scroll = new BScroll(this.$refs.wrapper, { probeType: 3 })
+                this.scroll = new BScroll(this.$refs.wrapper, {})
             } else {
                 this.scroll.refresh();
             }
@@ -116,8 +114,8 @@ export default {
                 }
                 this.chartSettings = { type: this.typeArr[this.index] }
                 _this.$nextTick(() => {
-                        _this._initScroll();
-                    })
+                    _this._initScroll();
+                })
             }, erro => {
                 console.log('数据加载失败!', erro)
             })
@@ -140,13 +138,14 @@ td {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
 .wrappers {
-    position: fixed;  
-    z-index: 1;  
-    top: 90px;  
-    bottom: 50px;  
-    left: 0;  
-    width: 100%;  
-    overflow: hidden; 
+    position: fixed;
+    z-index: 1;
+    top: 90px;
+    bottom: 50px;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
 }
 </style>

@@ -2,7 +2,7 @@
   <div>
     <div class="avatar">
       <img src="../../assets/logo.png" alt="...">
-      <span>中国中铁物资管理系统</span>
+      <span>易龙物资管理系统</span>
     </div>
     <group>
       <x-switch title="分享" v-model="show1"></x-switch>
@@ -20,7 +20,7 @@
     <actionsheet v-model="show5" :menus="menus5" show-cancel @on-click-menu="click"></actionsheet>
   
     <toast v-model="showSuccess">删除</toast>
-    <qrcode value="http://www.ziwusoft.com/" :size="num" type="img" class="qcode" fg-color="#000000" @click.native="onClick"></qrcode>
+    <qrcode value="http://www.yearrow.com" :size="num" type="img" class="qcode" fg-color="#000000" @click.native="onClick"></qrcode>
   </div>
 </template>
 
@@ -30,11 +30,6 @@ import { Qrcode, Cell, XInput, XButton, Actionsheet, Group, XSwitch, Toast } fro
 
 
 export default {
-  computed: {
-    author() {
-      return this.$store.state.author
-    }
-  },
   components: {
     Actionsheet, Cell, Qrcode,
     Group,
@@ -46,9 +41,9 @@ export default {
     return {
       num: 20,
       cellLists: [
-        { link: 'user/set', iconUrl: "", text: '设置', desc: '' },
+        { link: '', iconUrl: "", text: '设置', desc: '' },
         { link: '', iconUrl: '', text: '客服热线', desc: '029-88227793' },
-        { link: 'http://www.ziwusoft.com/', iconUrl: '', text: '关于我们', desc: '陕西梦龙科技有限公司' }
+        { link: 'http://www.yearrow.com', iconUrl: '', text: '关于我们', desc: '陕西易龙科技有限公司' }
       ],
       inputTxt: '',
       show1: false,
@@ -106,8 +101,8 @@ export default {
 }
 
 .avatar img {
-  width: 70px;
-  height: 70px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
   border: 4px solid #ececec;
 }

@@ -14,21 +14,21 @@
                     <tr>
                         <th>班组</th>
                         <th>材料名称</th>
-                        <th>规格</th>
-                        <th>开累</th>
+                        <th>规格型号</th>
+                        <th>开累数量</th>
                     </tr>
                 </thead>
-                     <tbody> 
-                        <tr v-for="(list,index) in detail" :key="index">
-                            <td v-text="list.RebarGName"></td>
-                            <td v-text="list.InfoName"></td>
-                            <td v-text="list.InfoModel"></td>
-                            <td v-text="list.Quantity"></td>
-                        </tr>
-                     </tbody> 
+                <tbody>
+                    <tr v-for="(list,index) in detail" :key="index">
+                        <td v-text="list.RebarGName"></td>
+                        <td v-text="list.InfoName"></td>
+                        <td v-text="list.InfoModel"></td>
+                        <td v-text="list.Quantity"></td>
+                    </tr>
+                </tbody>
             </x-table>
+            <load-more v-show="detail.length <= 0" :show-loading="false" tip="暂无数据..." background-color="#fbf9fe"></load-more>
         </div>
-        <load-more v-show="detail.length <= 0" :show-loading="false" tip="暂无数据..." background-color="#fbf9fe"></load-more>
         <div v-if="show">
             <x-button mini type="default" plain @click.native="changeType">切换图表类型</x-button>
             <ve-chart :data="chartData" :settings="chartSettings" tooltip-visible legend-visible></ve-chart>
@@ -46,13 +46,12 @@ import { mapGetters } from 'vuex'
 
 export default {
     components: {
-         XButton, Flexbox, FlexboxItem, XTable, XSwitch, TopCalendar, LoadMore
+        XButton, Flexbox, FlexboxItem, XTable, XSwitch, TopCalendar, LoadMore
     },
     data() {
         return {
-            typeArr: ['pie','histogram', 'line'],
+            typeArr: ['pie', 'histogram', 'line'],
             index: 0,
-            showScrollBox: false,
             detail: [],
             begtime: '',
             endtime: '',
@@ -98,7 +97,7 @@ export default {
                     }
                     _this.chartData.rows.push(obj)
                     _this.detail.push({
-                        RebarGName:data[i].RebarGName,
+                        RebarGName: data[i].RebarGName,
                         InfoName: data[i].InfoName,
                         InfoModel: data[i].InfoModel,
                         Quantity: data[i].Quantity + data[i].InfoUnit

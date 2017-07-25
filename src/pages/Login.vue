@@ -12,7 +12,7 @@
                 <a href="javascript:;" class="weui-dialog__btn weui-dialog__btn_primary" @click="_onConfirm">确定</a>
             </div>
         </x-dialog>
-        <x-header :left-options="{showBack: false}" @on-click-more="onClickMore" :right-options="{showMore:true}" :title="headTitle" class="header" style="width:100%;position:absolute;left:0;top:0;"></x-header>
+        <x-header :left-options="{showBack: false}" @on-click-more="onClickMore" :right-options="{showMore:true}" :title="headTitle" style="width:100%;position:absolute;left:0;top:0;"></x-header>
         <div style="text-align:center">
             <img src="../../static/logo.png">
             </x-img>
@@ -23,7 +23,7 @@
         </group>
         <group>
             <x-input ref="Password" title="密 码" :type="passwordType" required v-model.trim="loginForm.Password" placeholder="请输入密码" is-type="password" :min="1" @on-enter="onEnter">
-            <span slot="right" @click="passwordType=passwordType === 'password' ? 'text' : 'password'">{{passwordType === 'password' ? '明文' : '密文'}}</span>
+                <span slot="right" @click="passwordType=passwordType === 'password' ? 'text' : 'password'">{{passwordType === 'password' ? '明文' : '密文'}}</span>
             </x-input>
         </group>
         <div style="padding:15px;">
@@ -49,13 +49,13 @@ export default {
     data() {
         return {
             passwordType: 'password',
-            headTitle: '中铁管理系统',
+            headTitle: '易龙物资管理系统',
             baseURL: '',
             showScrollBox: false,
             loginForm: {
                 UserCode: 'zhaojian01',
                 Password: 'aaa'
-            }
+            },
         }
     },
     methods: {
@@ -142,7 +142,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.header {
-    background-color: RGB(0, 122, 204);
+.qcode {
+    text-align: right;
+    margin-top: 45px;
+    top: 0.5rem;
+    display: block;
+    position: absolute;
+    right: 10px;
 }
 </style>
